@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-finder',
@@ -6,10 +10,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./finder.component.css']
 })
 export class FinderComponent implements OnInit {
+  @Input() movie: any;
 
-  constructor() { }
+    baseUrl: string = 'http://www.omdbapi.com/?';
+    apiKeyUrlId: string = '&apikey=e0980c6&i=';
 
-  ngOnInit() {
+    constructor(
+      private route: ActivatedRoute,
+      private http: Http
+    ) { }
+
+    ngOnInit() {
+      const id = this.route.snapshot.paramMap.get('id');
+      this.getMovie(id).subscribe(movie => this.movie = movie);
+    }
+
+    getMovie(id){
+      return this.http
+        .get(this.baseUrl + this.apiKeyUrlId + id + '&plot=full')
+        .map(res => res.json());
+    }
   }
-
-}
