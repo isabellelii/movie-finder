@@ -10,4 +10,39 @@
 
 body {
   padding-bottom: 20px;
+  text-align: center;
+}
+
+img {
+  border: 1px solid #ddd;
+   border-radius: 4px;
+   padding: 5px;
+
+}
+
+a {
+  color: #5189b8;
+}
+
+h1 {
+  color: #05759e;
+  margin-top: 20px;
+}
+
+.well {
+  padding: 50px;
+}
+
+.display-info {
+  color: white;
+  font-size: 48px;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+.col-md-8 {
+  padding-left: 41px;
+}
+
+#poster {
+  padding: 3%;
 }
